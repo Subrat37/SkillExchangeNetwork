@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - SkillExchange</title>
+
+    <link rel="stylesheet" href="../css/auth.css">
+</head>
+
+<body>
+
+    <div class="auth-container">
+
+        <!-- LEFT SIDE -->
+        <div class="auth-left">
+
+            <div class="auth-brand">
+                <span>Skill</span>Exchange
+            </div>
+
+            <div class="auth-left-content">
+
+                <h1>
+                    Learn.
+                    <span>Share.</span>
+                    Grow.
+                </h1>
+
+                <p>
+                    Connect with people, exchange knowledge
+                    and build new skills together.
+                </p>
+
+                <div class="auth-benefits">
+
+                    <div>
+                        <span>✓</span>
+                        Learn from skilled people
+                    </div>
+
+                    <div>
+                        <span>✓</span>
+                        Share your own knowledge
+                    </div>
+
+                    <div>
+                        <span>✓</span>
+                        Build meaningful connections
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+        <div class="auth-right">
+
+            <div class="auth-form-container">
+
+                <a href="../index.html" class="back-home">
+                    ← Back to Home
+                </a>
+
+                <h2>Welcome Back 👋</h2>
+
+                <p class="form-subtitle">
+                    Login to continue your SkillExchange journey.
+                </p>
+
+
+                <!-- LOGIN FORM -->
+
+                <form id="loginForm" onsubmit="handleLogin(event)">
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="password-container">
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                id="togglePassword"
+                                class="show-password">
+                                Show
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-options">
+
+                        <label class="remember-me">
+
+                            <input
+                                type="checkbox"
+                                id="rememberMe"
+                            >
+
+                            Remember me
+
+                        </label>
+
+                        <a href="#" class="forgot-password">
+                            Forgot Password?
+                        </a>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="auth-btn"
+                        id="loginButton">
+
+                        Login
+
+                    </button>
+
+
+                    <div id="loginMessage"></div>
+
+                </form>
+
+
+                <div class="auth-divider">
+                    <span>OR</span>
+                </div>
+
+
+                <p class="switch-auth">
+
+                    Don't have an account?
+
+                    <a href="register.html">
+                        Create Account
+                    </a>
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="../js/auth.js"></script>
+
+    <script>
+        async function handleLogin(e) {
+            e.preventDefault();
+            const data = {
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value
+            };
+            try {
+                const user = await UserAPI.login(data);
+                setLoggedInUser(user);
+                showToast(`Welcome back, ${user.name}!`, 'success');
+                setTimeout(() => window.location.href = 'index.html', 1000);
+            } catch (err) {
+                showToast(err.message, 'error');
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,785 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile - Skill Exchange</title>
+
+    <link rel="stylesheet" href="../css/profile.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+    <nav class="navbar">
+
+        <div class="logo">
+            <span>Skill</span>Exchange
+        </div>
+
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="#">Explore Skills</a>
+            <a href="#">Find Users</a>
+            <a href="#">Messages</a>
+            <a href="profile.html" class="active">Profile</a>
+            <a href="#">Logout</a>
+        </div>
+
+    </nav>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="profile-container">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1>My Profile</h1>
+            <p>Complete your profile so other users can know your skills.</p>
+        </div>
+
+
+        <!-- Profile Completion -->
+        <section class="completion-card">
+
+            <div class="completion-info">
+                <div>
+                    <h3>Profile Completion</h3>
+                    <p id="completionText">0% Complete</p>
+                </div>
+
+                <strong id="completionPercentage">0%</strong>
+            </div>
+
+            <div class="progress-bar">
+                <div id="progressFill"></div>
+            </div>
+
+        </section>
+
+
+        <!-- ================= PROFILE FORM ================= -->
+
+        <form id="profileForm">
+
+
+            <!-- PERSONAL INFORMATION -->
+            <section class="profile-card">
+
+                <div class="section-title">
+                    <div class="section-icon">👤</div>
+
+                    <div>
+                        <h2>Personal Information</h2>
+                        <p>Tell other users a little about yourself.</p>
+                    </div>
+                </div>
+
+
+                <!-- Profile Picture -->
+
+                <div class="profile-picture-section">
+
+                    <div class="profile-picture" id="profilePicture">
+                        <span id="profileInitial">U</span>
+                    </div>
+
+                    <div>
+                        <h3>Profile Picture</h3>
+
+                        <input
+                            type="file"
+                            id="profileImage"
+                            accept="image/*"
+                        >
+
+                        <p class="input-help">
+                            JPG or PNG. Maximum size 2MB.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <!-- Full Name -->
+
+                    <div class="form-group">
+                        <label for="fullName">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            placeholder="Enter your full name"
+                        >
+                    </div>
+
+
+                    <!-- Username -->
+
+                    <div class="form-group">
+                        <label for="username">
+                            Username
+                        </label>
+
+                        <input
+                            type="text"
+                            id="username"
+                            placeholder="Enter username"
+                        >
+                    </div>
+
+
+                    <!-- Email -->
+
+                    <div class="form-group">
+                        <label for="email">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            placeholder="Enter your email"
+                        >
+                    </div>
+
+
+                    <!-- Phone -->
+
+                    <div class="form-group">
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="Enter phone number"
+                        >
+                    </div>
+
+
+                    <!-- Location -->
+
+                    <div class="form-group">
+                        <label for="location">
+                            Location
+                        </label>
+
+                        <input
+                            type="text"
+                            id="location"
+                            placeholder="City, State"
+                        >
+                    </div>
+
+
+                    <!-- Date of Birth -->
+
+                    <div class="form-group">
+                        <label for="dob">
+                            Date of Birth
+                        </label>
+
+                        <input
+                            type="date"
+                            id="dob"
+                        >
+                    </div>
+
+                </div>
+
+
+                <!-- Bio -->
+
+                <div class="form-group full-width">
+
+                    <label for="bio">
+                        About Me
+                    </label>
+
+                    <textarea
+                        id="bio"
+                        rows="5"
+                        placeholder="Tell other users about yourself, your interests and your goals..."
+                    ></textarea>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= SKILLS ================= -->
+
+            <section class="profile-card">
+
+                <div class="section-title">
+
+                    <div class="section-icon">
+                        🛠️
+                    </div>
+
+                    <div>
+                        <h2>Skills</h2>
+
+                        <p>
+                            Add skills you can teach and skills you want to learn.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- TEACH SKILLS -->
+
+                <div class="skill-section">
+
+                    <h3>
+                        Skills I Can Teach
+                    </h3>
+
+                    <p class="skill-description">
+                        Add skills that you are confident enough to teach others.
+                    </p>
+
+
+                    <div
+                        class="skill-input-container"
+                        id="teachSkillContainer"
+                    >
+
+                        <!-- Skills will appear here -->
+
+                    </div>
+
+
+                    <div class="add-skill">
+
+                        <input
+                            type="text"
+                            id="teachSkillInput"
+                            placeholder="Example: Java"
+                        >
+
+                        <button
+                            type="button"
+                            onclick="addSkill('teach')"
+                        >
+                            + Add Skill
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- LEARN SKILLS -->
+
+                <div class="skill-section">
+
+                    <h3>
+                        Skills I Want To Learn
+                    </h3>
+
+                    <p class="skill-description">
+                        Add skills that you would like to learn from other users.
+                    </p>
+
+
+                    <div
+                        class="skill-input-container"
+                        id="learnSkillContainer"
+                    >
+
+                        <!-- Skills will appear here -->
+
+                    </div>
+
+
+                    <div class="add-skill">
+
+                        <input
+                            type="text"
+                            id="learnSkillInput"
+                            placeholder="Example: React"
+                        >
+
+                        <button
+                            type="button"
+                            onclick="addSkill('learn')"
+                        >
+                            + Add Skill
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= EDUCATION ================= -->
+
+            <section class="profile-card">
+
+                <div class="section-title">
+
+                    <div class="section-icon">
+                        🎓
+                    </div>
+
+                    <div>
+                        <h2>Education</h2>
+
+                        <p>
+                            Add your educational background.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="qualification">
+                            Highest Qualification
+                        </label>
+
+                        <select id="qualification">
+
+                            <option value="">
+                                Select qualification
+                            </option>
+
+                            <option>
+                                High School
+                            </option>
+
+                            <option>
+                                Diploma
+                            </option>
+
+                            <option>
+                                Bachelor's Degree
+                            </option>
+
+                            <option>
+                                Master's Degree
+                            </option>
+
+                            <option>
+                                PhD
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="course">
+                            Course / Field
+                        </label>
+
+                        <input
+                            type="text"
+                            id="course"
+                            placeholder="Example: Computer Science"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="college">
+                            College / University
+                        </label>
+
+                        <input
+                            type="text"
+                            id="college"
+                            placeholder="Enter college name"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="graduationYear">
+                            Graduation Year
+                        </label>
+
+                        <input
+                            type="number"
+                            id="graduationYear"
+                            placeholder="Example: 2026"
+                            min="1950"
+                            max="2100"
+                        >
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= EXPERIENCE ================= -->
+
+            <section class="profile-card">
+
+                <div class="section-title">
+
+                    <div class="section-icon">
+                        💼
+                    </div>
+
+                    <div>
+                        <h2>Experience</h2>
+
+                        <p>
+                            Tell us about your professional experience.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="experienceLevel">
+                            Experience Level
+                        </label>
+
+                        <select id="experienceLevel">
+
+                            <option value="">
+                                Select level
+                            </option>
+
+                            <option>
+                                Beginner
+                            </option>
+
+                            <option>
+                                Intermediate
+                            </option>
+
+                            <option>
+                                Advanced
+                            </option>
+
+                            <option>
+                                Expert
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="experienceYears">
+                            Years of Experience
+                        </label>
+
+                        <input
+                            type="number"
+                            id="experienceYears"
+                            min="0"
+                            placeholder="Example: 2"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full-width">
+
+                        <label for="currentRole">
+                            Current Role
+                        </label>
+
+                        <input
+                            type="text"
+                            id="currentRole"
+                            placeholder="Example: Java Developer"
+                        >
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= AVAILABILITY ================= -->
+
+            <section class="profile-card">
+
+                <div class="section-title">
+
+                    <div class="section-icon">
+                        ⏰
+                    </div>
+
+                    <div>
+                        <h2>Availability</h2>
+
+                        <p>
+                            Let other users know when you are available for skill exchange.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Available Days
+                    </label>
+
+
+                    <div class="days">
+
+                        <label>
+                            <input type="checkbox" value="Monday">
+                            Monday
+                        </label>
+
+                        <label>
+                            <input type="checkbox" value="Tuesday">
+                            Tuesday
+                        </label>
+
+                        <label>
+                            <input type="checkbox" value="Wednesday">
+                            Wednesday
+                        </label>
+
+                        <label>
+                            <input type="checkbox" value="Thursday">
+                            Thursday
+                        </label>
+
+                        <label>
+                            <input type="checkbox" value="Friday">
+                            Friday
+                        </label>
+
+                        <label>
+                            <input type="checkbox" value="Saturday">
+                            Saturday
+                        </label>
+
+                        <label>
+                            <input type="checkbox" value="Sunday">
+                            Sunday
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="startTime">
+                            Available From
+                        </label>
+
+                        <input
+                            type="time"
+                            id="startTime"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="endTime">
+                            Available Until
+                        </label>
+
+                        <input
+                            type="time"
+                            id="endTime"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Preferred Learning Mode
+                    </label>
+
+
+                    <div class="learning-mode">
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                value="Online"
+                            >
+                            🌐 Online
+                        </label>
+
+                        <label>
+                            <input
+                                type="checkbox"
+                                value="Offline"
+                            >
+                            📍 Offline
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= SOCIAL LINKS ================= -->
+
+            <section class="profile-card">
+
+                <div class="section-title">
+
+                    <div class="section-icon">
+                        🌐
+                    </div>
+
+                    <div>
+                        <h2>Professional Links</h2>
+
+                        <p>
+                            Add links to your professional profiles.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="github">
+                            GitHub
+                        </label>
+
+                        <input
+                            type="url"
+                            id="github"
+                            placeholder="https://github.com/username"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="linkedin">
+                            LinkedIn
+                        </label>
+
+                        <input
+                            type="url"
+                            id="linkedin"
+                            placeholder="https://linkedin.com/in/username"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group full-width">
+
+                        <label for="portfolio">
+                            Portfolio
+                        </label>
+
+                        <input
+                            type="url"
+                            id="portfolio"
+                            placeholder="https://yourportfolio.com"
+                        >
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= SAVE BUTTON ================= -->
+
+            <div class="save-section">
+
+                <button
+                    type="button"
+                    class="save-btn"
+                    onclick="saveProfile()"
+                >
+                    Save Profile
+                </button>
+
+                <button
+                    type="button"
+                    class="cancel-btn"
+                    onclick="window.location.href='../index.html'"
+                >
+                    Cancel
+                </button>
+
+            </div>
+
+
+        </form>
+
+    </main>
+
+
+    <!-- ================= TOAST ================= -->
+
+    <div
+        id="toast"
+        class="toast"
+    >
+        Profile saved successfully!
+    </div>
+
+
+    <script src="../js/profile.js"></script>
+
+</body>
+</html>
+

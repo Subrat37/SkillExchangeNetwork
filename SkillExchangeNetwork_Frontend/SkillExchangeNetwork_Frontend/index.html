@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f8fc">
+  <title>SkillSwap — Exchange Skills, Grow Together</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="toast-region" class="toast-region" aria-live="polite"></div>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" data-view="home"><span class="brand-mark">S</span><span>skill<span class="brand-light">swap</span></span></a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="side-nav">
+        <button class="nav-item active" data-view="home"><span>⌂</span> Overview</button>
+        <button class="nav-item" data-view="discover"><span>⌕</span> Discover skills</button>
+        <button class="nav-item" data-view="my-skills"><span>✳</span> My skills</button>
+        <button class="nav-item" data-view="exchanges"><span>⇄</span> Exchange requests <b id="request-badge" class="nav-badge hidden">0</b></button>
+        <button class="nav-item" data-view="messages"><span>✉</span> Messages</button>
+        <button class="nav-item" data-view="notifications"><span>♧</span> Notifications <b id="notification-badge" class="nav-badge hidden">0</b></button>
+      </nav>
+      <div class="side-label side-label-lower">YOUR SPACE</div>
+      <nav class="side-nav">
+        <button class="nav-item" data-view="profile"><span>◎</span> My profile</button>
+        <button class="nav-item" data-view="reviews"><span>☆</span> Reviews</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="help-card"><div class="help-icon">✦</div><strong>Grow by sharing</strong><p>Every skill you share opens a new door.</p><button data-view="discover">Explore skills <span>↗</span></button></div>
+        <div class="account-row"><div class="avatar" id="sidebar-avatar">?</div><div class="account-copy"><strong id="sidebar-name">Guest user</strong><small id="sidebar-email">Sign in to continue</small></div><button id="logout-btn" class="icon-button" title="Log out" aria-label="Log out">↗</button></div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu icon-button" id="mobile-menu" aria-label="Open menu">☰</button>
+        <div class="breadcrumb"><span>Workspace</span><span class="crumb-slash">/</span><strong id="page-crumb">Overview</strong></div>
+        <div class="topbar-actions"><span class="status-pill"><i></i> Community is open</span><button class="icon-button notification-shortcut" data-view="notifications" aria-label="Notifications">♧</button><div class="avatar avatar-small" id="top-avatar">?</div></div>
+      </header>
+      <div class="page-wrap">
+        <section id="view-home" class="view active"></section>
+        <section id="view-discover" class="view"></section>
+        <section id="view-my-skills" class="view"></section>
+        <section id="view-exchanges" class="view"></section>
+        <section id="view-messages" class="view"></section>
+        <section id="view-notifications" class="view"></section>
+        <section id="view-profile" class="view"></section>
+        <section id="view-reviews" class="view"></section>
+      </div>
+      <footer class="footer">Made for curious minds <span>✳</span> Learn something. Teach something.</footer>
+    </main>
+  </div>
+
+  <dialog id="auth-dialog" class="modal">
+    <form method="dialog" class="modal-close-wrap"><button class="modal-close" aria-label="Close">×</button></form>
+    <div class="modal-kicker">YOUR NEXT CHAPTER STARTS HERE</div>
+    <h2 id="auth-title">Welcome back</h2><p id="auth-subtitle" class="muted">Sign in and keep growing.</p>
+    <div class="auth-tabs"><button class="auth-tab active" data-auth-mode="login">Sign in</button><button class="auth-tab" data-auth-mode="register">Create account</button></div>
+    <form id="auth-form" class="form-stack">
+      <label id="name-field" class="hidden">Full name<input name="name" autocomplete="name" placeholder=""></label>
+      <label>Email address<input name="email" type="email" required autocomplete="email" placeholder="you@example.com"></label>
+      <label id="phone-field" class="hidden">Phone number<input name="phone" autocomplete="tel" placeholder="Your phone number"></label>
+      <label>Password<input name="password" type="password" required minlength="4" autocomplete="current-password" placeholder="Enter your password"></label>
+      <button class="button button-primary button-full" type="submit" id="auth-submit">Sign in <span>→</span></button>
+      <p class="form-note">Demo note: this app uses the authentication endpoints in your existing backend.</p>
+    </form>
+  </dialog>
+
+  <dialog id="exchange-dialog" class="modal">
+    <form method="dialog" class="modal-close-wrap"><button class="modal-close" aria-label="Close">×</button></form>
+    <div class="modal-kicker">MAKE A CONNECTION</div><h2>Request a skill exchange</h2>
+    <p class="muted">Suggest what you can teach and what you'd like to learn.</p>
+    <form id="exchange-form" class="form-stack">
+      <label>Person's user ID<input name="receiverId" type="number" min="1" required placeholder="User ID"></label>
+      <label>Skill you can teach<select name="offeredSkillId" id="offered-skill" required></select></label>
+      <label>Skill you'd like to learn<select name="requestedSkillId" id="requested-skill" required></select></label>
+      <label>Message<textarea name="message" rows="3" maxlength="500" placeholder="Hi! I'd love to exchange skills..."></textarea></label>
+      <button class="button button-primary button-full" type="submit">Send request <span>→</span></button>
+    </form>
+  </dialog>
+
+  <dialog id="message-dialog" class="modal">
+    <form method="dialog" class="modal-close-wrap"><button class="modal-close" aria-label="Close">×</button></form>
+    <div class="modal-kicker">START A CONVERSATION</div><h2>Send a message</h2>
+    <form id="message-form" class="form-stack">
+      <label>Recipient user ID<input name="receiverId" type="number" min="1" required placeholder="User ID"></label>
+      <label>Your message<textarea name="message" rows="4" required maxlength="2000" placeholder="Write your message..."></textarea></label>
+      <button class="button button-primary button-full" type="submit">Send message <span>→</span></button>
+    </form>
+  </dialog>
+
+  <dialog id="review-dialog" class="modal">
+    <form method="dialog" class="modal-close-wrap"><button class="modal-close" aria-label="Close">×</button></form>
+    <div class="modal-kicker">CELEBRATE THE EXCHANGE</div><h2>Leave a review</h2>
+    <form id="review-form" class="form-stack">
+      <label>Review user ID<input name="reviewed_user_id" type="number" min="1" required></label>
+      <label>Rating<select name="rating" required><option value="5">★★★★★ — Excellent</option><option value="4">★★★★☆ — Great</option><option value="3">★★★☆☆ — Good</option><option value="2">★★☆☆☆ — Fair</option><option value="1">★☆☆☆☆ — Needs improvement</option></select></label>
+      <label>Comment<textarea name="comment" rows="3" maxlength="1000" placeholder="How was your experience?"></textarea></label>
+      <button class="button button-primary button-full" type="submit">Publish review <span>→</span></button>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>

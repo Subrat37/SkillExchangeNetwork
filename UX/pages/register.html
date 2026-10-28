@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account - SkillExchange</title>
+
+    <link rel="stylesheet" href="../css/auth.css">
+
+</head>
+
+<body>
+
+    <div class="auth-container">
+
+        <!-- LEFT SIDE -->
+
+        <div class="auth-left">
+
+            <div class="auth-brand">
+                <span>Skill</span>Exchange
+            </div>
+
+            <div class="auth-left-content">
+
+                <h1>
+                    Start Your
+                    <span>Skill Journey.</span>
+                </h1>
+
+                <p>
+                    Create your profile, share your skills
+                    and discover people who can help you learn.
+                </p>
+
+                <div class="auth-benefits">
+
+                    <div>
+                        <span>✓</span>
+                        Create your skill profile
+                    </div>
+
+                    <div>
+                        <span>✓</span>
+                        Discover new skills
+                    </div>
+
+                    <div>
+                        <span>✓</span>
+                        Exchange knowledge with others
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+
+        <div class="auth-right">
+
+            <div class="auth-form-container">
+
+                <a href="../index.html" class="back-home">
+                    ← Back to Home
+                </a>
+
+                <h2>Create Your Account 🚀</h2>
+
+                <p class="form-subtitle">
+                    Join SkillExchange and start learning.
+                </p>
+
+
+                <!-- REGISTER FORM -->
+
+                <form id="registerForm" onsubmit="handleRegister(event)">
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Full Name
+                        </label>
+
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="registerEmail">
+                            Email Address
+                        </label>
+
+                        <input type="email" id="registerEmail" name="email" placeholder="Enter your email" required>
+
+                    </div>
+                    <div class="form-group">
+
+                        <label for="registerPhone">
+                            Phone
+                        </label>
+
+                        <input type="tel" id="registerPhone" name="phone" placeholder="Enter your Phone Number"
+                            required>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="registerPassword">
+                            Password
+                        </label>
+
+                        <div class="password-container">
+
+                            <input type="password" id="registerPassword" name="password" placeholder="Create a password"
+                                required>
+
+                            <button type="button" id="toggleRegisterPassword" class="show-password">
+                                Show
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="confirmPassword">
+                            Confirm Password
+                        </label>
+
+                        <input type="password" id="confirmPassword" name="confirmPassword"
+                            placeholder="Confirm your password" required>
+
+                    </div>
+
+
+                    <label class="terms">
+
+                        <input type="checkbox" id="terms" required>
+
+                        <span>
+                            I agree to the
+                            <a href="#">Terms & Conditions</a>
+                        </span>
+
+                    </label>
+
+
+                    <button type="submit" class="auth-btn" id="registerButton">
+
+                        Create Account
+
+                    </button>
+
+
+                    <div id="registerMessage"></div>
+
+                </form>
+
+
+                <div class="auth-divider">
+                    <span>OR</span>
+                </div>
+
+
+                <p class="switch-auth">
+
+                    Already have an account?
+
+                    <a href="login.html">
+                        Login
+                    </a>
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="../js/auth.js"></script>
+    <script src="../API/api.js"></script>
+
+    <script>
+        async function handleRegister(e) {
+            e.preventDefault();
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                showToast('Passwords do not match!', 'error');
+                return; // Stop registration
+            }
+            const data = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('registerEmail').value,
+                phone: document.getElementById('registerPhone').value,
+                password: document.getElementById('registerPassword').value
+            };
+            try {
+                const user = await UserAPI.register(data);
+                setLoggedInUser(user);
+                showToast('Account created successfully!', 'success');
+                setTimeout(() => window.location.href = '../index.html', 1000);
+            } catch (err) {
+                showToast(err.message, 'error');
+            }
+        }
+    </script>
+
+</body>
+
+</html>
